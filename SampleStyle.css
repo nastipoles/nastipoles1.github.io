@@ -1,0 +1,123 @@
+	body { background: url('back.png'); 
+	background-attachment: fixed;
+	background-repeat: round; }
+
+.mirrorY { transform: scale(-1, 1); }
+
+
+
+.block1 {
+ float: left;
+  
+ position: absolute;
+	bottom: -2px;
+	right: 0px;
+}
+.block2 {
+
+    float: right;
+ position: absolute;
+	bottom: -2px;
+	left: -3px;
+}
+.block3 {
+ width: 60%; 
+   
+ position: absolute;
+	bottom: -2px;
+	right: 250px;
+}
+.block4 {
+ width: 90%; 
+   
+    float: right;
+ position: absolute;
+	bottom: -2px;
+	right: 50px;
+}
+
+	button {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  color: hsl(88, 70%, 30%);
+  text-shadow: rgba(255,255,255,.5) 0 -1px 0, rgba(0,0,0,.2) 0 .18em .15em;
+  text-decoration: none;
+  user-select: none;
+  margin: .5em;
+  padding: .5em .6em .4em .6em;
+  border-radius: 8px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  outline: none;
+  background: #a2cf70 radial-gradient(rgba(255,255,255,0), rgba(255,255,255,.5));
+  box-shadow:
+   inset rgba(255,255,255,.6) 0 .3em .3em,
+   inset rgba(0,0,0,.2) 0 -.1em .3em,
+   rgb(128,161,103) 0 7px 1px,
+   rgba(0,0,0,.2) 0 .5em 5px;
+  transition: background .2s ease-in-out;
+}
+button:hover {
+  background-color: hsl(88, 70%, 75%);
+}
+button:active {
+  top: .2em;
+  color: rgba(254,255,255,.9);
+  text-shadow: rgba(0,0,0,.2) 0 1px 2px;
+  box-shadow:
+   inset rgba(255,255,255,.6) 0 .3em .3em,
+   inset rgba(0,0,0,.2) 0 -.1em .3em,
+   rgba(0,0,0,.4) 0 .1em 1px,
+   rgba(0,0,0,.3) 0 .2em 6px;
+}
+
+	/*Перемещение*/
+	#all
+	{ text-align: center;
+         margin: 0 auto; }
+
+	/*Свойства прямоугольника, содержащего шкалу и стрелку*/
+	#stage
+	{
+		width: 500px;
+		height: 33px;
+		position: absolute;
+    		top: 240px; 
+    		right: 375px;
+	}
+
+	/*Свойства шкалы*/
+	#scale
+	{
+		width: 459px;
+		height: 53px;
+		position: absolute;
+		top: 0px;
+		left: 9px;
+		border: 2px #4B0082 inset;
+		background-image: url('scale.jpg'); 
+	}
+
+	/*Свойства стрелки*/
+	#arrow
+	{
+		width: 17px;
+		height: 22px;
+		position: absolute;
+		top: 10px;
+		left: 0px;
+		background-image: url('arrow.png');
+	/*Transition*/
+		-webkit-transition: left 0.5s ease-out 0s;
+		-moz-transition: left 2s ease-out 0s;
+		transition: left 0.5s ease-out 0s;
+	}
+
+	#output
+	{ font-family: "Сomic Sans MS";
+	 font-size: 150%;
+	color:#4B0082;
+	font-weight:bold;
+}

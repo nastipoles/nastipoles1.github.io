@@ -1,0 +1,138 @@
+﻿<!doctype html>
+<meta charset="utf-8">
+<title>Игра Угадай Число с графикой</title>
+<link rel="stylesheet" href="SampleStyle.css">
+	
+<div id="all">
+<div id="stage">
+<div id="scale"></div>
+<div id="arrow"></div>
+</div>
+ 	<div class="block1">
+	<img src="phone1.gif" width="450" height="250">
+	</div>
+	<div class="block2">
+	<img src="phone2.gif" width="450" height="250" class="mirrorY">
+	</div>
+	<div class="block3">
+	<img src="phone3.gif" width="325" height="200">
+	</div>
+	<div class="block4">
+	<img src="phone4.png" width="600" height="50">
+	</div>
+	<p id="output">Помоги Джимми найти свой дом!</p>
+	<p id="output">Угадай его номер от 1 до 25</p>
+<input id="input" type="text"
+placeholder="Введите число ..." autofocus>
+	<button>Нажми</button>
+<script type="text/javascript">
+	//Инициализация переменных игры
+var mysteryNumber = Math.floor(Math.random() * 25);
+var playersGuess = 0;
+var guessesRemaining = 5;
+var guessesMade = 0;
+var gameState = "";
+var gameWon = false;
+var message = "Пожалуйста, введите число от 1 до 25."
+//Отслеживание нажатия клавиши Enter
+window.addEventListener("keydown", keydownHandler, false);
+//Ссылки на поля ввода и вывода
+var input = document.querySelector("#input");
+var output = document.querySelector("#output");
+//Ссылка на кнопку
+var button = document.querySelector("button");
+button.addEventListener("click", clickHandler, false);
+//Ссылка на стрелку
+var arrow = document.querySelector("#arrow");
+function keydownHandler(event)
+{
+if(event.keyCode === 13)
+{
+validateInput();
+}
+}
+function clickHandler()
+{
+validateInput();
+}
+function validateInput()
+{
+playersGuess = parseInt(input.value);
+input.value = ""
+if(isNaN(playersGuess))
+{
+output.innerHTML = message;
+}
+else if(playersGuess < 0 || playersGuess > 25)
+{
+output.innerHTML = message;
+}
+else
+{
+playGame();
+}
+}
+function playGame()
+{
+guessesRemaining -= 1;
+guessesMade += 1;
+gameState = " Сделано попыток: " + guessesMade +
+". Осталось: " + guessesRemaining + ".";
+if(playersGuess > mysteryNumber)
+{
+output.innerHTML = "Слишком большое." + gameState;
+//Проверка на конец игры
+if (guessesRemaining < 1)
+{
+endGame();
+}
+}
+else if(playersGuess < mysteryNumber)
+{
+output.innerHTML = "Слишком маленькое." + gameState;
+//Проверка на конец игры
+if (guessesRemaining < 1)
+{
+endGame();
+}
+}
+else
+{
+gameWon = true;
+endGame();
+}
+//Обновление отображения в окне браузера
+render();
+}
+function endGame()
+{
+if (gameWon)
+{
+output.innerHTML
+= "Да, это " + mysteryNumber + "!" + "<br>"
++ "Количество ваших попыток: " + guessesMade + ".";
+}
+else
+{
+output.innerHTML
+= "Больше не осталось попыток!" + "<br>"
++ "Было загадано число " + mysteryNumber + ".";
+}
+//Отключение кнопки
+button.removeEventListener("click", clickHandler, false);
+button.disabled = true;
+//Отключение клавиши Enter
+window.removeEventListener("keydown", keydownHandler, false);
+//Отключение поля ввода
+input.placeholder = "Конец игры!";
+input.disabled = true;
+}
+function render()
+{
+//Позиционирование стрелки на шкале
+//Увеличение введенного числа в 3 раза,
+//для перевода его в пиксели на шкале
+arrow.style.left = playersGuess * 18 + "px";
+}
+
+</script>
